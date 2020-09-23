@@ -22,7 +22,8 @@ public class CodeMsg {
 
     public static CodeMsg SUCCESS = new CodeMsg(0,"success");
     public static CodeMsg SERVER_ERROR = new CodeMsg(500100,"服务端异常");
-    public static CodeMsg PARAM_ERROR = new CodeMsg(500101,"参数校验异常:%s");
+    public static CodeMsg PARAM_ERROR = new CodeMsg(500101,"参数校验异常：%s");
+    public static CodeMsg OTHER_ERROR = new CodeMsg(500102, "哎呀，不好意思出错了：%s");
 
     public CodeMsg fillArgs(Object ... args){
         int code  = this.code;

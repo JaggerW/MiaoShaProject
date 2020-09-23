@@ -32,7 +32,7 @@ public class RedisConfig {
     @Value("${spring.redis.jedis.pool.max-active}")
     private Integer maxActive;
 
-    @Value("${spring.redis.jedis.pool.max-idel}")
+    @Value("${spring.redis.jedis.pool.max-idle}")
     private Integer maxIdle;
 
     @Value("${spring.redis.jedis.pool.max-wait}")

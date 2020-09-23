@@ -1,6 +1,7 @@
 package com.nju.miaosha.exception;
 
 import com.nju.miaosha.common.Result;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ import java.net.BindException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-
+    @ExceptionHandler(value = Exception.class)
     public Result<String> exceptionHandle(HttpServletRequest request, Exception e){
         e.printStackTrace();
         if(e instanceof GlobalException){

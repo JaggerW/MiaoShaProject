@@ -19,4 +19,7 @@ public interface UserMapper {
     @Select("select * from user where user_id = #{id}")
     UserDO getById(@Param("id") long id);
 
+    @Insert("insert into user(user_id,user_name,password,user_salt,head,register_date,last_login_date,login_count)" +
+            "values (#{userId},#{userName},#{password},#{userSalt},#{head},#{registerDate},#{lastLoginDate},#{loginCount})")
+    Integer insert(UserDO userDO);
 }

@@ -10,12 +10,14 @@ import com.nju.miaosha.request.LoginRequest;
 import com.nju.miaosha.utils.GlobalParamsUtil;
 import com.nju.miaosha.utils.MD5Util;
 import com.nju.miaosha.utils.UUIDUtil;
+import com.sun.org.apache.bcel.internal.classfile.Code;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 /**
  * @Author: jaggerw
@@ -83,5 +85,23 @@ public class UserService {
     }
 
 
+    public boolean regist(HttpServletResponse response, LoginRequest loginRequest) {
+        if(loginRequest == null){
+            throw new GlobalException(CodeMsg.PARAM_ERROR);
+        }
+        String userId = loginRequest.getMobile();
+        String formPass = loginRequest.getMobile();
+        String name = "JaggerW";
+        String salt = UUIDUtil.uuid().substring(0,9);
+        String dbPass = MD5Util.formPass2DBPass(formPass,salt);
+        UserDO userDO = new UserDO();
+        userDO.setUserId(Long.parseLong(userId));
+        userDO.setUserName(name);
+        userDO.setPassword(dbPass);
+        userDO.setUserSalt(salt);
+        userDO.setLoginCount(0);
+        userDO.setRegisterDate(new Date());
+        return userMapper.insert(userDO)>0;
 
+    }
 }
